@@ -9,16 +9,6 @@ interface BarCardProps {
 }
 
 export const BarCard = ({ bar }: BarCardProps) => {
-    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-    const ref = useClickAway(() => {
-        console.log("clicked outside");
-        setIsModalOpen(!isModalOpen);
-    }) as React.MutableRefObject<HTMLDivElement>;
-
-    function handleModalToggle(): void {
-        setIsModalOpen(!isModalOpen);
-    }
-
     return (
         <div className="bg-zinc-700 rounded-lg p-4 w-full">
             <div className="flex flex-row justify-center items-center gap-2">
@@ -33,24 +23,10 @@ export const BarCard = ({ bar }: BarCardProps) => {
                         {bar.address}
                     </div>
                 </div>
-                <button
-                    className="rounded-full bg-violet-800 p-4"
-                    onClick={handleModalToggle}
-                >
+                <button className="rounded-full bg-violet-800 p-4">
                     <span className="text-4xl">👁</span>
                 </button>
             </div>
-            {isModalOpen && (
-                <div
-                    className="fixed inset-0 flex justify-center items-center z-50"
-                    ref={ref}
-                >
-                    <BarModalComponent
-                        bar={bar}
-                        closeModal={handleModalToggle}
-                    />
-                </div>
-            )}
         </div>
     );
 };
