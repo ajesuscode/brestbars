@@ -23,12 +23,15 @@ const MapBarComponent = ({ bars }: MapBarComponentProps) => {
                     maxZoom={19}
                     attribution="© OpenStreetMap contributors"
                 />
+                <Marker position={[48.38, -4.486076]}>
+                    <Popup>Test Marker</Popup>
+                </Marker>
                 {bars.map((bar, index) => (
                     <Marker
                         key={index}
                         position={[
-                            bar.location.coordinates[0],
                             bar.location.coordinates[1],
+                            bar.location.coordinates[0],
                         ]}
                     >
                         <Popup>{bar.name}</Popup>
