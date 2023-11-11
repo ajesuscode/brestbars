@@ -1,41 +1,42 @@
 "use client";
-import React from "react";
-import Map, { Marker } from "react-map-gl";
-
-import "mapbox-gl/dist/mapbox-gl.css";
+import { MapContainer, Marker, TileLayer, Tooltip, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import "leaflet-defaulticon-compatibility";
+import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
+import React, { useEffect } from "react";
 import { BarTypes } from "../types/types";
 
 interface MapBarComponentProps {
     bars: BarTypes[];
 }
 
-export const MapBarComponent = ({ bars }: MapBarComponentProps) => {
-    const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
-    console.log(mapboxToken);
+const MapBarComponent = ({ bars }: MapBarComponentProps) => {
     return (
-        <div>
-            <div className="text-zinc-200">MABBOX COMPONENT</div>
-            <Map
-                mapLib={import("mapbox-gl")}
-                mapboxAccessToken={mapboxToken}
-                initialViewState={{
-                    longitude: -20,
-                    latitude: -12,
-                    zoom: 14,
-                }}
-                mapStyle="mapbox://styles/mapbox/streets-v9"
+        <div className="w-full flex-1">
+            <MapContainer
+                center={[48.38, -4.486076]}
+                zoom={13}
+                style={{ height: "100%", width: "100%" }}
             >
-                {bars.map((bar: BarTypes) => {
+                <TileLayer
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    maxZoom={19}
+                    attribution="© OpenStreetMap contributors"
+                />
+                {bars.map((bar, index) => (
                     <Marker
-                        longitude={bar.location.coordinates[0]}
-                        latitude={bar.location.coordinates[1]}
-                        anchor="bottom"
-                        key={bar.id}
+                        key={index}
+                        position={[
+                            bar.location.coordinates[0],
+                            bar.location.coordinates[1],
+                        ]}
                     >
-                        <div>X</div>
-                    </Marker>;
-                })}
-            </Map>
+                        <Popup>{bar.name}</Popup>
+                    </Marker>
+                ))}
+            </MapContainer>
         </div>
     );
 };
+
+export default MapBarComponent;

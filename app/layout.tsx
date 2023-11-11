@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Navbar } from "./components/Navbar";
 import "./globals.css";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +18,7 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-            <body className="bg-zinc-900 min-h-screen overflow-hidden">
+            <body className="bg-zinc-900 min-h-screen w-full overflow-hidden">
                 <Navbar />
                 {children}
             </body>
