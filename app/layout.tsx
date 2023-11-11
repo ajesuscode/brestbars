@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-            <body className="bg-zinc-900 min-h-screen overflow-hidden">
+            <body className="bg-zinc-900 min-h-screen w-full overflow-hidden">
                 <Navbar />
                 {children}
             </body>

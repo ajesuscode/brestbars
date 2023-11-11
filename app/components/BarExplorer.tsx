@@ -31,7 +31,10 @@ export const BarExplorer = () => {
                     </span>
                 </button>
             </div>
-            <div className="overflow-y-auto w-full">
+            <div
+                className="overflow-y-auto w-full"
+                style={{ height: "calc(100vh - 200px)" }}
+            >
                 {bars.map((bar: BarTypes) => (
                     <div key={bar.id} className="pb-4">
                         <BarCard bar={bar} />
