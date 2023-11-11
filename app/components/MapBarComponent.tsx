@@ -16,6 +16,7 @@ export const MapBarComponent = ({ bars }: MapBarComponentProps) => {
         <div>
             <div className="text-zinc-200">MABBOX COMPONENT</div>
             <Map
+                mapLib={import("mapbox-gl")}
                 mapboxAccessToken={mapboxToken}
                 initialViewState={{
                     longitude: -20,
