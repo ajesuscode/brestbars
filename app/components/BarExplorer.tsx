@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { BarCard } from "./BarCard";
 import { BarTypes } from "@/app/types/types";
+import { getAllBars } from "../utils/barsFetcher";
 
 export const BarExplorer = () => {
     const [bars, setBars] = useState<BarTypes[]>([]);
@@ -11,14 +12,12 @@ export const BarExplorer = () => {
 
     async function fetchBarPlaces() {
         try {
-            const response = await fetch("https://api.brest.bar/items/bars");
-            const barsData = await response.json();
-            setBars(barsData.data);
+            const res = await getAllBars();
+            setBars(res);
         } catch (error) {
             console.log(error);
         }
     }
-    console.log(bars);
     return (
         <div className="flex flex-col justify-center items-center gap-4 w-full">
             <div className="flex flex-row justify-between items-center p-4 w-full gap-28">
