@@ -13,11 +13,14 @@
     "@uidotdev/usehooks": "^2.4.1",
     "leaflet": "^1.9.4",
     "leaflet-defaulticon-compatibility": "^0.1.2",
+    "leaflet.markercluster": "^1.5.3",
     "mapbox-gl": "^2.15.0",
     "next": "14.0.2",
     "react": "^18",
     "react-dom": "^18",
     "react-leaflet": "^4.2.1",
+    "react-leaflet-cluster": "^2.1.0",
+    "react-leaflet-markercluster": "^3.0.0-rc1",
     "react-map-gl": "^7.1.6"
   },
   "devDependencies": {

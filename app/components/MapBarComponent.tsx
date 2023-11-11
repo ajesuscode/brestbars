@@ -1,5 +1,7 @@
 "use client";
 import { MapContainer, Marker, TileLayer, Tooltip, Popup } from "react-leaflet";
+import MarkerClusterGroup from "react-leaflet-cluster";
+import "react-leaflet-markercluster/dist/styles.min.css";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
@@ -24,20 +26,23 @@ const MapBarComponent = ({ bars }: MapBarComponentProps) => {
                     maxZoom={19}
                     attribution="© OpenStreetMap contributors"
                 />
-                <Marker position={[48.38, -4.486076]}>
-                    <Popup>Test Marker</Popup>
-                </Marker>
-                {bars.map((bar, index) => (
-                    <Marker
-                        key={index}
-                        position={[
-                            bar.location.coordinates[1],
-                            bar.location.coordinates[0],
-                        ]}
-                    >
-                        <BarPopup bar={bar} />
-                    </Marker>
-                ))}
+                <MarkerClusterGroup
+                    showCoverageOnHover={false}
+                    maxClusterRadius={50}
+                    chunkedLoading={true}
+                >
+                    {bars.map((bar) => (
+                        <Marker
+                            key={bar.id}
+                            position={[
+                                bar.location.coordinates[1],
+                                bar.location.coordinates[0],
+                            ]}
+                        >
+                            <BarPopup bar={bar} />
+                        </Marker>
+                    ))}
+                </MarkerClusterGroup>
             </MapContainer>
         </div>
     );
