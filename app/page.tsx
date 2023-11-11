@@ -34,7 +34,11 @@ export default function Home() {
 
     return (
         <main className="flex flex-row overflow-hidden w-full h-full">
-            <Sidebar bars={bars} selectedBar={selectedBar} />
+            <Sidebar
+                bars={bars}
+                selectedBar={selectedBar}
+                setSelectedBar={setSelectedBar}
+            />
             <MapBarComponent bars={bars} setSelectedBar={setSelectedBar} />
         </main>
     );
