@@ -5,6 +5,7 @@ import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import React, { useEffect } from "react";
 import { BarTypes } from "../types/types";
+import BarPopup from "./BarPopup";
 
 interface MapBarComponentProps {
     bars: BarTypes[];
@@ -34,7 +35,7 @@ const MapBarComponent = ({ bars }: MapBarComponentProps) => {
                             bar.location.coordinates[0],
                         ]}
                     >
-                        <Popup>{bar.name}</Popup>
+                        <BarPopup bar={bar} />
                     </Marker>
                 ))}
             </MapContainer>
